@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>İltifat Makinesi</title>
+  <style>
+    body {
+      background-color: #fff0f5;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+      position: relative;
+    }
+    h1 {
+      font-size: 2em;
+      color: #ff4d88;
+    }
+    textarea {
+      width: 90%;
+      max-width: 400px;
+      height: 80px;
+      font-size: 1em;
+      padding: 10px;
+      margin: 20px 0;
+      border: 2px solid #ff4d88;
+      border-radius: 10px;
+      resize: none;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 1em;
+      background-color: #ff4d88;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    #result {
+      margin-top: 20px;
+      font-size: 1.2em;
+      color: #ff4d88;
+      font-weight: bold;
+    }
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: red;
+      transform: rotate(-45deg);
+      animation: float 5s infinite ease-in-out;
+    }
+    .heart:before, .heart:after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: red;
+      border-radius: 50%;
+    }
+    .heart:before {
+      top: -10px;
+      left: 0;
+    }
+    .heart:after {
+      left: 10px;
+      top: 0;
+    }
+    @keyframes float {
+      0% { transform: translateY(0) rotate(-45deg); opacity: 1; }
+      100% { transform: translateY(-100vh) rotate(-45deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>Nasıl bir iltifat istersin?</h1>
+<textarea id="input" placeholder="Örnek: Romantik, Komik, Tatlı..."></textarea><br>
+<button onclick="generateCompliment()">Gönder</button>
+
+<div id="result"></div>
+
+<script>
+  const compliments = {
+    "romantik": "Senin gülüşün, karanlık bir günü aydınlatacak kadar güzel.",
+    "komik": "Seninle gülerken karın kası yapacağım sanırım 😂",
+    "tatlı": "Sen, şekerin bile kıskandığı bir tatlılıktasın!",
+    "zeki": "Zekân yıldızlar kadar parlak ve sonsuz.",
+    "güzel": "Senin güzelliğin tarif edilemez, sadece hissedilir.",
+  };
+
+  function generateCompliment() {
+    const input = document.getElementById("input").value.trim().toLowerCase();
+    let result = compliments[input] || "Sen zaten her hâlinle harikasın!";
+    document.getElementById("result").innerText = result;
+  }
+
+  function createHearts() {
+    for (let i = 0; i < 30; i++) {
+      let heart = document.createElement("div");
+      heart.className = "heart";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.top = Math.random() * 100 + "vh";
+      heart.style.animationDelay = Math.random() * 5 + "s";
+      document.body.appendChild(heart);
+    }
+  }
+
+  createHearts();
+</script>
+
+</body>
+</html>
